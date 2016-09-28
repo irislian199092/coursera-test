@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+<meta charset="utf-8">
+<title>week2 excisers!</title>
+<style>
+body{
+  font-size:24px;
+}
+</style>
+
+</head>
+<body>
+  <h1>Week 2!</h1>
+  <!-- 自定义过滤函数开始-->
+  <div ng-controller="FilterController">
+    <h3>1.Filters</h3>
+    <div>loves:{{sayMsg()}}</div>
+    <div>truth:{{truthMsg() |truth}}</div>
+    <div>truth:{{truthMsg() |truth :'health':'cookie'}}</div>
+    <div>
+    Big truth:{{truthMsg() |truth :'health':'cookie'| uppercase}}
+    </div>
+  </div>
+  <!-- 自定义过滤函数结束-->
+  <!-- Digest cycle开始-->
+  <div ng-controller="digestController">
+    <h3>2.The Digest Cycle!</h3>
+    <button type="button" ng-click="showNum()">
+      Log # of Watchers
+    </button>
+    <button type="button" ng-click="countOnce()">
+      Log # of Watchers
+    </button>
+    <p>
+      {{onceCounter}}
+    </p>
+  </div>
+  <!-- Digest cycle结束-->
+
+
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
