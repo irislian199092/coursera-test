@@ -262,6 +262,7 @@ function ShoppingListService2(maxItems){
     return items;
   }
 }
+//factory function
 function ShoppingListFactory(){
   var factory=function(maxItems){
     return new ShoppingListService2(maxItems);
@@ -270,7 +271,69 @@ function ShoppingListFactory(){
 }
 
 /*------------------8————custom factory结束------------------*/
+/*------------------9————service provider开始------------------*/
+app.controller('ShoppingListController3',ShoppingListController3);
+app.provider('ShoopingListService',ShoopingListServiceProvider)
+.config(Config);
+Config.$inject=['ShoopingListServiceProvider']; ///注意：provider的name+'Provider'；
+function Config(ShoopingListServiceProvider){
+  ShoopingListServiceProvider.defaults.maxItems=2;
+}
 
+ShoppingListController3.$inject=['ShoopingListService'];
+function ShoppingListController3(ShoopingListService){
+  var list3=this;
+  //var shoppinglist3=ShoopingListService;
+  list3.items=ShoopingListService.getItems();
+  list3.itemName="";
+  list3.itemQuantity="";
+  list3.addItem=function(){
+    try{
+      ShoopingListService.addItem(list3.itemName,list3.itemQuantity);
+    }catch(error){
+      list3.errorMessage=error.message;
+    }
+  };
+  list3.removeItem=function(itemIndex){
+    ShoopingListService.removeItem(itemIndex);
+  }
+}
+
+function ShoppingListService3(maxItems){
+  var service=this;
+  var items=[];
+  service.addItem=function(name,quantity){
+    if((maxItems===undefined)||
+    (maxItems!==undefined)&&(items.length<maxItems)){
+      var item={
+        name:name,
+        quantity:quantity
+      };
+      items.push(item);
+    }else{
+      throw new Error('Max items('+maxItems+')reached.');
+    }
+
+  }
+  service.removeItem=function(itemIndex){
+    items.splice(itemIndex,1);
+  }
+  service.getItems=function(){
+    return items;
+  }
+}
+//provider function
+function ShoopingListServiceProvider(){
+  var provider=this;
+  provider.defaults={
+    maxItems:4
+  };
+  provider.$get=function(){
+    var shoppinglist3=new ShoppingListService3(provider.defaults.maxItems);
+    return shoppinglist3;
+  };
+}
+/*------------------9————service provider结束------------------*/
 
 
 

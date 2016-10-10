@@ -7,14 +7,19 @@
 body{
   font-size:24px;
 }
+h1{
+  font-weight:bold;
+  color:green;
+}
+
 </style>
 
 </head>
 <body>
-  <h1>Week 2!</h1>
+  <h1 style="text-align:center">Week 2!</h1>
   <!-- 1————自定义过滤函数开始-->
   <div ng-controller="FilterController">
-    <h3>1.Filters</h3>
+    <h1>1.Filters</h1>
     <div>loves:{{sayMsg()}}</div>
     <div>truth:{{truthMsg() |truth}}</div>
     <div>truth:{{truthMsg() |truth :'health':'cookie'}}</div>
@@ -26,7 +31,7 @@ body{
   <!-- 1————自定义过滤函数结束-->
   <!-- 2————Digest cycle开始-->
   <div ng-controller="digestController">
-    <h3>2.The Digest Cycle!</h3>
+    <h1>2.The Digest Cycle!</h1>
     <button type="button" ng-click="showNum()">
       Log # of Watchers
     </button>
@@ -42,7 +47,7 @@ body{
   <!-- 2————Digest cycle结束-->
   <!-- 3————$watch and $apply开始-->
   <div class="" ng-controller="CounterController">
-    <h3>3.$watch and $apply</h3>
+    <h1>3.$watch and $apply</h1>
     <div class="">
       <button type="button" ng-click="uPCounter()">Increment</button>
     </div>
@@ -57,7 +62,7 @@ body{
       <!-- <div >{{lastName}}</div>                  1-way binding -->
       <!-- <div >{{::fullName}}</div>               1-time binding -->
   <div class="" ng-controller="BindingController">
-    <h3>2-way 1-way and 1-time binding</h3>
+    <h1>4.2-way 1-way and 1-time binding</h1>
     <button type="button" ng-click="showNum()"> Log Watchers</button><br/>
     <button type="button" ng-click="setFullName()">Set FullName</button><br/>
     FULL name is :{{ ::fullName}}<br/>
@@ -71,7 +76,7 @@ body{
   <!--4————2 2-way 1-way and 1-time binding结束-->
   <!--5————ng-repeat开始-->
   <div ng-controller="ShoopingListController">
-    <h3>ng-repeat</h3>
+    <h1>5.ng-repeat</h1>
     <ul>
       <li ng-repeat="item in shoppingList1">
         {{item}}
@@ -93,6 +98,7 @@ body{
   <!--5————ng-repeat结束-->
   <!--6————ng-controller开始-->
   <div class="" ng-controller="parentController as parent">
+    <h1>6.ng-controller</h1>
     <p>
       parent value is :{{parent.value}}
     </p>
@@ -126,6 +132,7 @@ body{
   <hr>
   <!--8————custom factory开始-->
   <div class="" ng-controller="ShoppingListController1 as list1">
+    <h1>8.custom factory</h1>
     <h3>shoppingList1 #1 </h3>
     <input type="text" ng-model="list1.itemName" placeholder="item name"><br>
     <input type="text" ng-model="list1.itemQuantity" placeholder="item quantity"><br>
@@ -159,6 +166,26 @@ body{
     </div>
   </div>
   <!--8————custom factory结束-->
+  <!--9————service provider开始-->
+  <div class="" ng-controller="ShoppingListController3 as list3">
+    <h1>9.service provider</h1>
+    <h3>shoppingList3 #3 </h3>
+    <input type="text" ng-model="list3.itemName" placeholder="item name"><br>
+    <input type="text" ng-model="list3.itemQuantity" placeholder="item quantity"><br>
+    <button type="button" ng-click="list3.addItem()">add Item List</button>
+    <ol>
+      <li ng-repeat="item in list3.items">
+        {{item.quantity}}
+        of{{item.name}}
+        <button type="button" ng-click="list3.removeItem($index)">remove</button>
+      </li>
+    </ol>
+    <div style="color:red">
+      Error:{{list3.errorMessage}}
+    </div>
+  </div>
+
+  <!--9————service provider结束-->
 
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="app.js"></script>
