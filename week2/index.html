@@ -12,7 +12,7 @@ body{
 </head>
 <body>
   <h1>Week 2!</h1>
-  <!-- 自定义过滤函数开始-->
+  <!-- 1————自定义过滤函数开始-->
   <div ng-controller="FilterController">
     <h3>1.Filters</h3>
     <div>loves:{{sayMsg()}}</div>
@@ -22,13 +22,15 @@ body{
     Big truth:{{truthMsg() |truth :'health':'cookie'| uppercase}}
     </div>
   </div>
-  <!-- 自定义过滤函数结束-->
-  <!-- Digest cycle开始-->
+    <hr>
+  <!-- 1————自定义过滤函数结束-->
+  <!-- 2————Digest cycle开始-->
   <div ng-controller="digestController">
     <h3>2.The Digest Cycle!</h3>
     <button type="button" ng-click="showNum()">
       Log # of Watchers
     </button>
+    <input type="text" name="name" ng-model="name">
     <button type="button" ng-click="countOnce()">
       Log # of Watchers
     </button>
@@ -36,8 +38,127 @@ body{
       {{onceCounter}}
     </p>
   </div>
-  <!-- Digest cycle结束-->
+    <hr>
+  <!-- 2————Digest cycle结束-->
+  <!-- 3————$watch and $apply开始-->
+  <div class="" ng-controller="CounterController">
+    <h3>3.$watch and $apply</h3>
+    <div class="">
+      <button type="button" ng-click="uPCounter()">Increment</button>
+    </div>
+    <div class="">
+      Regular counter:{{counter}}
+    </div>
+  </div>
+  <hr>
+  <!--3———— $watch and $apply结束-->
+  <!--4————2-way 1-way and 1-time binding开始-->
+      <!-- <input type="button"  ng-model="name">    2-way binding -->
+      <!-- <div >{{lastName}}</div>                  1-way binding -->
+      <!-- <div >{{::fullName}}</div>               1-time binding -->
+  <div class="" ng-controller="BindingController">
+    <h3>2-way 1-way and 1-time binding</h3>
+    <button type="button" ng-click="showNum()"> Log Watchers</button><br/>
+    <button type="button" ng-click="setFullName()">Set FullName</button><br/>
+    FULL name is :{{ ::fullName}}<br/>
+    <button type="button" ng-click="logFirstName()">Log FirstName</button><br/>
+    <button type="button" ng-click="logFullName()">Log FullName</button><br/>
+    <div class="">
+      <input type="text" ng-model="firstName"/>
+    </div>
+  </div>
+  <hr>
+  <!--4————2 2-way 1-way and 1-time binding结束-->
+  <!--5————ng-repeat开始-->
+  <div ng-controller="ShoopingListController">
+    <h3>ng-repeat</h3>
+    <ul>
+      <li ng-repeat="item in shoppingList1">
+        {{item}}
+      </li>
+    </ul>
+    <ul>
+      <input type="text" ng-model="shoppingList2[0].describe">
+      <li ng-repeat="item in shoppingList2">
+        {{$index+1}}. Buy                          <!--$index代表每项的顺序-->
+        {{item.name}} of {{item.describe}}(s)
+        <a href="#" ng-click="logIndex()">点击</a>
+      </li>
+      <input type="text" ng-model="newItemName"><br/>
+      <input type="text" ng-model="newItemDescribe">
+      <button type="button" ng-click="addNewItem">ADD</button>
+    </ul>
+  </div>
+<hr>
+  <!--5————ng-repeat结束-->
+  <!--6————ng-controller开始-->
+  <div class="" ng-controller="parentController as parent">
+    <p>
+      parent value is :{{parent.value}}
+    </p>
+    <div class="" ng-controller="childrenController as children2">
+      <p>
+        children value is:{{children2.value}}
+      </p>
+    </div>
+  </div>
+  <hr>
+  <!--6————ng-controller结束-->
+  <!--7————custom serveice开始-->
+  <div class="" ng-controller="ShoppingListAddController as itemAdder">
+    <h1>7.Custom service</h1>
+    <div>
+      <input type="text" ng-model="itemAdder.itemName" placeholder="item name"><br>
+      <input type="text" ng-model="itemAdder.itemQuantity" placeholder="item quantity"><br>
+      <button type="button" ng-click="itemAdder.addItem()">add Item List</button>
+    </div>
+  </div>
+  <div class="" ng-controller="ShoppingListShowController as showList">
+    <ol>
+      <li ng-repeat="item in showList.items">
+        {{item.quantity}}
+        of{{item.name}}
+        <button type="button" ng-click="showList.removeItem($index)">remove</button>
+      </li>
+    </ol>
+  </div>
+  <!--7————custom serveice结束-->
+  <hr>
+  <!--8————custom factory开始-->
+  <div class="" ng-controller="ShoppingListController1 as list1">
+    <h3>shoppingList1 #1 </h3>
+    <input type="text" ng-model="list1.itemName" placeholder="item name"><br>
+    <input type="text" ng-model="list1.itemQuantity" placeholder="item quantity"><br>
+    <button type="button" ng-click="list1.addItem()">add Item List</button>
+    <ol>
+      <li ng-repeat="item in list1.items">
+        {{item.quantity}}
+        of{{item.name}}
+        <button type="button" ng-click="list1.removeItem($index)">remove</button>
+      </li>
+    </ol>
+    <div style="color:red">
+      Error:{{list1.errorMessage}}
+    </div>
+  </div>
 
+  <div class="" ng-controller="ShoppingListController2 as list2">
+    <h3>shoppingList2 #2 (limited to 3 items)</h3>
+    <input type="text" ng-model="list2.itemName" placeholder="item name"><br>
+    <input type="text" ng-model="list2.itemQuantity" placeholder="item quantity"><br>
+    <button type="button" ng-click="list2.addItem()">add Item List</button>
+    <ol>
+      <li ng-repeat="item in list2.items">
+        {{item.quantity}}
+        of{{item.name}}
+        <button type="button" ng-click="list2.removeItem($index)">remove</button>
+      </li>
+    </ol>
+    <div style="color:red">
+      Error:{{list2.errorMessage}}
+    </div>
+  </div>
+  <!--8————custom factory结束-->
 
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="app.js"></script>
