@@ -180,12 +180,15 @@ h1{
         <button type="button" ng-click="list3.removeItem($index)">remove</button>
       </li>
     </ol>
-    <div style="color:red">
+    <div style="color:red" ng-if="list3.errorMessage">
       Error:{{list3.errorMessage}}
     </div>
   </div>
 
   <!--9————service provider结束-->
+  <!--10————ng-show ng-hide ng-if开始-->
+  <!-- ng-if,html会删掉不存在的元素
+  ng-show和ng-hide，HTML中不会删除不存在的元素，只是隐藏 -->
 
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="app.js"></script>
