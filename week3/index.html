@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+<meta charset="utf-8">
+<title>week3</title>
+</head>
+<body>
+  <!--1————promise 开始-->
+  <div class="" ng-controller="ShoppingListController as list">
+    <h1>1————promise</h1>
+    <input type="text" ng-model="list.itemName" placeholder="item name"><br>
+    <input type="text" ng-model="list.itemQuantity" placeholder="item quantity"><br>
+    <button type="button" ng-click="list.addItem()">add Item List</button>
+    <ol>
+      <li ng-repeat="item in list.items">
+        {{item.quantity}}
+        of{{item.name}}
+        <button type="button" ng-click="list.removeItem($index)">remove</button>
+      </li>
+    </ol>
+    <div style="color:red">
+      Error:{{list.errorMessage}}
+    </div>
+  </div>
+  <!--1————promise 结束-->
+  <!--2————$http 开始-->
+
+
+
+
+
+  <!--2————$http 结束-->
+
+
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
