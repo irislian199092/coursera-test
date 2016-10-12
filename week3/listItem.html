@@ -1,0 +1,24 @@
+<!-- <h4>{{title}}</h4>
+<ol>
+  <li ng-repeat="item in list.items">
+    {{item.quantity}}
+    of{{item.name}}
+    <button type="button" ng-click="list.removeItem($index)">remove</button>
+  </li>
+</ol>
+<div style="color:red">
+  Error:{{list.errorMessage}}
+</div> -->
+
+
+<h4>{{list.title}}</h4>
+<ol>
+  <li ng-repeat="item in list.items">
+    {{item.quantity}}
+    of{{item.name}}
+    <button type="button" ng-click="list.badRemove($index)">remove</button>
+  </li>
+</ol>
+<div style="color:red">
+  Error:{{list.errorMessage}}
+</div>

@@ -24,12 +24,54 @@
   </div>
   <!--1————promise 结束-->
   <!--2————$http 开始-->
-
-
-
-
-
+  <div class="" ng-controller="menuListController as menus">
+    <h1>2————$http</h1>
+    <ul>
+      <li ng-repeat="item in menus.catarage">
+        (<a href="#" ng-click="menus.logMenuItems">{{item.name}}</a>)<br>
+        {{item.name}}{{item.price}}
+      </li>
+    </ul>
+  </div>
   <!--2————$http 结束-->
+  <!--3————directives of @  =开始-->
+  <div >
+    <h1>3————directives of @  =</h1>
+    <div class="" ng-controller="ShoppingListController1 as list1">
+      <input type="text" ng-model="list1.itemName" placeholder="item name"><br>
+      <input type="text" ng-model="list1.itemQuantity" placeholder="item quantity"><br>
+      <button type="button" ng-click="list1.addItem()">add Item List</button>
+      <list-item my-list="list1" title="{{list1.title}}"></list-item>
+      <div style="color:red">
+        Error:{{list1.errorMessage}}
+      </div>
+    </div>
+
+    <div class="" ng-controller="ShoppingListController2 as list2">
+      <input type="text" ng-model="list2.itemName" placeholder="item name"><br>
+      <input type="text" ng-model="list2.itemQuantity" placeholder="item quantity"><br>
+      <button type="button" ng-click="list2.addItem()">add Item List</button>
+        <list-item my-list="list2"></list-item>
+      <div style="color:red">
+        Error:{{list2.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <!--3————directives of @  =结束-->
+  <!--4————directives of controller开始-->
+  <div >
+    <h1>4————directives of controller</h1>
+    <div class="" ng-controller="ShoppingListDirectiveController as list">
+      <input type="text" ng-model="list.itemName" placeholder="item name"><br>
+      <input type="text" ng-model="list.itemQuantity" placeholder="item quantity"><br>
+      <button type="button" ng-click="list.addItem()">add Item List</button>
+      <span>{{list.lastRemoved}}</span>
+
+
+      <shopping-list items="list.items" title="{{list.title}}" bad-remove="list.removeItem"></shopping-list>
+    </div>
+  </div>
+  <!--4————directives of controller结束-->
 
 
 <script src="../bower_components/angular/angular.min.js"></script>
