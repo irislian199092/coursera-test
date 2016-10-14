@@ -286,26 +286,64 @@ function shoppingList(){
     scope:{
       items:'<',//只会检测到HTML中的属性变化，不会检测到directive里的变化，单向检测，保证指令不会改变对象的属性
       title:'@',
-      badRemove:'='
+      badRemove:'=',
+      onRemove:'&',
+      transclude:true
     },
     controller:'isolateController as list',
-    bindToController:true
+    bindToController:true,
+    link:ShoppingListDirectiveLink
     // controllerAs:'list'
   }
   return ddo;
 }
-function isolateController(){
+function ShoppingListDirectiveLink(scope,element,attrs,controller){
+  console.log('scope is:',scope);
+  console.log('element is:',element);
+  console.log('attrs is:',attrs.title);
+  console.log('controller is:',controller);
+  scope.$watch(controller.detectCookie(),function(newValue,oldValue){
+    console.log(newValue);
+    console.log(oldValue);
+    if(newValue){
+      displayCookieError();
+    }else{
+      removeCookieError();
+    }
+  });
 
+  function displayCookieError(){
+    //利用angularjs jqLite
+    var errorEle=element.find('div');
+    errorEle.css('display','block');
+  }
+  function removeCookieError(){
+    //利用angularjs jqLite
+    // var errorEle=element.find('div');
+    //   errorEle.css('display','none');
+    //   console.log(errorEle);
+    //利用jquery
+    var errorEle=element.find('.error');
+    console.log(errorEle);
+    errorEle.slideDown(1200);
+  }
 }
-
+//独立scope directe的函数
+function isolateController(){
+  // this.detectCookie=function(){
+  //
+  // }
+}
+//控制器函数
 ShoppingListDirectiveController.$inject=['ShoppingListDirectiveFactory'];
 function ShoppingListDirectiveController(ShoppingListDirectiveFactory){
   var list=this;
+  //list.warning='lulian';
   var shoppinglist2=ShoppingListDirectiveFactory();
   list.items=shoppinglist2.getItems();
   list.itemName="";
   list.itemQuantity="";
-  var originTile="shoppingList1 #1 ";
+  var originTile="shoppingList1 #6 ";
   list.title=originTile+(list.items.length);
   list.addItem=function(){
     shoppinglist2.addItem(list.itemName,list.itemQuantity);
@@ -314,10 +352,11 @@ function ShoppingListDirectiveController(ShoppingListDirectiveFactory){
   list.removeItem=function(itemIndex){
     console.log(this);
     shoppinglist2.removeItem(itemIndex);
-    list.title=originTile+(list.items.length);
-    this.lastRemoved='last item removed is'+this.items[itemIndex].name;
+    this.title=originTile+(list.items.length);
+    //this.lastRemoved='last item removed is'+this.items[itemIndex].itemName;
   }
 }
+
 
 function ShoppingDirectiveListService(){
   var service=this;

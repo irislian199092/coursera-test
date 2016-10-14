@@ -16,9 +16,16 @@
   <li ng-repeat="item in list.items">
     {{item.quantity}}
     of{{item.name}}
-    <button type="button" ng-click="list.badRemove($index)">remove</button>
+    <!-- <button type="button" ng-click="list.badRemove($index)">remove</button> -->
+    <button type="button" ng-click="list.onRemove({index:$index})">remove</button>
   </li>
 </ol>
-<div style="color:red">
-  Error:{{list.errorMessage}}
-</div>
+<p>
+  {{list.ice}}
+</p>
+<!-- <div style="color:red" class="error">
+  ohh!cookies is detected!!
+</div> -->
+<!-- <div class="error" ng-transclude>
+
+</div> -->
