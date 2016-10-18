@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app='MyApp'>
+<head>
+<meta charset="utf-8">
+<title>week4</title>
+<style media="screen">
+  .error{
+    color:red;
+    display:none;
+  }
+</style>
+</head>
+<body>
+
+<div class="">
+  <!--1————component component based architecture开始-->
+  <h1>1————component component based architecture</h1>
+  <div class="" ng-controller="ShoppingListController as list">
+    <input type="text" ng-model="list.itemName" placeholder="item name"><br>
+    <input type="text" ng-model="list.itemQuantity" placeholder="item quantity"><br>
+    <button type="button" ng-click="list.addItem()">add Item List</button>
+    <shopping-list
+      id="list1"
+      items="list.items"
+      title="{{list.title}}"
+      on-remove='list.removeItem(index)'
+    >
+    </shopping-list>
+  </div>
+
+  <!-- $rootScope -->
+  <loading-spinner></loading-spinner>
+
+  <!--1————component component based architecture结束-->
+  <!--2————$broadcast and $emit 开始-->
+  <!--2————$broadcast and $emit 结束-->
+
+</div>
+<script src="http://localhost:3000/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="http://localhost:3000/bower_components/angular/angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

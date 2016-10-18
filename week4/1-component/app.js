@@ -32,7 +32,7 @@
       }
     });
     $ctrl.$onDestroy=function(){
-      cancelListener();        //这个组件的scope，and 绑定在$rootScope的事件也都会销毁
+      cancelListener(); //这个组件的scope，and 绑定在$rootScope的事件也都会销毁
     }
   }
 
