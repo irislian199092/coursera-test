@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<title>intro to ui-router</title>
+<link rel="stylesheet" href="css/style.css" media="screen" title="no title">
+</head>
+<body>
+<h1>1----intro to ui-router</h1>
+
+<ui-view></ui-view>
+
+<!-- libraries -->
+<script src="libs/angular.min.js"></script>
+<script src="libs/angular-ui-router"></script>
+
+<!-- module -->
+<script src="src/shoppinglist/shoppinglist.module.js"></script>
+
+<!-- routes -->
+<script src="src/router.js"></script>
+
+<!-- shoppinglist module artifacts -->
+<script src="src/shoppinglist/main-shoppinglist.controller.js"></script>
+<script src="src/shoppinglist/shoppinglist.component.js"></script>
+<script src="src/shoppinglist/shoppinglist.service.js"></script>
+<script src="src/shoppinglist/item-detail.controller.js"></script>
+
+<!-- spinner -->
+<script src="src/spinner/spinner.module.js"></script>
+<script src="src/spinner/loadingspinner.component.js"></script>
+</body>
+</html>

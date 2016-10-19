@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="RoutingApp">
+<head>
+<meta charset="utf-8">
+<title>intro to ui-router</title>
+</head>
+<style media="screen">
+  .tabs{
+    margin-bottom:10px;
+  }
+  a{
+    background:#eee;
+    padding:4px;
+    color:#000;
+    text-decoration:none;
+  }
+  .activeTab{
+    background:red;
+    padding:4px;
+    color:#fff;
+    text-decoration:none;
+  }
+</style>
+<body>
+<h1>1----intro to ui-router</h1>
+<div class="tabs">
+  <a ui-sref='tab1' ui-sref-active='activeTab'>选项卡1</a>
+  <a ui-sref='tab2' ui-sref-active='activeTab'>选项卡2</a>
+
+</div>
+<ui-view></ui-view>
+<!-- <script src="../bower_components/jquery/dist/jquery.min.js"></script> -->
+<script src="libs/angular.min.js"></script>
+<script src="libs/angular-ui-router"></script>
+<!-- module -->
+<script src="src/app.js"></script>
+</body>
+</html>
