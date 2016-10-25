@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="formApp">
+<head>
+<meta charset="utf-8">
+<title>form</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-controller="registerController as reg">
+  <h1>Simple form validation</h1>
+  <fieldset>
+    <legend>register</legend>
+    <form name="regForm" novalidate>
+      <!-- username -->
+      <input type="text"
+        name="username"
+        placeholder="Pick a username"
+        ng-model="reg.user.username"
+        required
+        minlength="4"
+        ng-maxlength="10"
+      >
+      {{reg.user.username}}
+      <span
+        ng-if="(regForm.username.$error.minlength||
+                regForm.username.$error.required)&&
+                regForm.username.$touched"
+      >
+      user name must be least 4 characters long
+      </span>
+      <span ng-if="regForm.username.$error.maxlength&&
+                    regForm.username.$touched">
+      user name must not be longer than 10 characters long
+      </span>
+      <br>
+      <!-- email -->
+      <input type="email" name="email"
+        placeholder="email"
+        ng-model="reg.user.email"
+        required
+      >
+      <span
+        ng-if="regForm.email.$invalid&&
+        regForm.email.$touched"
+      >
+      must be a valid email address:handle@domai format
+      </span>
+      <br>
+      <!-- phone -->
+      <input type="text" name="phone"
+        placeholder="phone ###-###-####"
+        ng-model="reg.user.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})"
+      >
+      <span
+        ng-if="regForm.phone.$invalid&&
+        regForm.phone.$touched"
+      >
+      phone must be in the format ###-###-####
+      </span>
+      <br>
+      <!-- submit -->
+      <button ng-disabled="regForm.$invalid"
+        ng-click="reg.submit()"
+      >
+        Submit
+      </button>
+
+      <div class="">
+        form valid?{{regForm.$valid}}
+      </div>
+    </form>
+  </fieldset>
+
+  <div id="info" ng-if="regForm.$valid">
+    username:{{reg.user.username}}<br>
+    email:{{reg.user.email}}<br>
+    phone:{{reg.user.phone}}
+  </div>
+
+
+
+<script src="libs/angular.min.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>

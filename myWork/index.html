@@ -3,22 +3,11 @@
 <head>
 <meta charset="utf-8">
 <title>myWork</title>
-<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-<div class="" ng-controller="silderNavController">
-  <ul id="sliderNav">
-    <li quick-ng-repeat="item in navItem" quick-repeat-list="items">
-      <a href="#">{{item.title}}</a>
-      <ul ng-show="isOpen" class="sliderNav_sec">
-        <!-- <li ng-repeat="(key, value) in item.lists">
-          <a href="#">{{key}}</a>
-        </li> -->
-      </ul>
-    </li>
-  </ul>
-</div>
+
 
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="../bower_components/angular-animate/angular-animate.min.js"></script>

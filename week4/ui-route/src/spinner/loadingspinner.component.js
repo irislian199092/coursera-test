@@ -9,32 +9,34 @@
   function SpinnerController($rootScope){
     var $ctrl=this;
     var cancellers=[];
+    //所有这些时间都是$rootScope $broadcast down
     $ctrl.$onInit=function(){
       // start
-      var cancel=cancellers.$on('$stateChangeStart',
+      var cancel=$rootScope.$on('$stateChangeStart',
         function(event,toState,formState,fromParams,options){
           $ctrl.showSpinner=true;
         });
       cancellers.push(cancel);
       // success
-      cancel=cancellers.$on('$stateChangeSuccess',
+      cancel=$rootScope.$on('$stateChangeSuccess',
         function(event,toState,toParams,formState,fromParams){
           $ctrl.showSpinner=false;
         });
       cancellers.push(cancel);
       // error
-      cancel=cancellers.$on('$stateChangeError',
+      cancel=$rootScope.$on('$stateChangeError',
         function(event,toState,toParams,formState,fromParams,error){
           $ctrl.showSpinner=false;
         });
-
-      $ctrl.$onDestroy=function(){
-        cancellers.forEach(function(item){
-          item();
-        })
-      }
-
+      cancellers.push(cancel);
     }
+    //destroy
+    $ctrl.$onDestroy=function(){
+      cancellers.forEach(function(item){
+        item();
+      })
+    }
+
   }
 
 })();

@@ -42,7 +42,7 @@
             deferred.reject(result);
           }
 
-        },20);
+        },2000);
         return deferred.promise;
       }
 
